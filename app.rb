@@ -16,9 +16,8 @@ end
 post('/projects') do
   title = params[:title]
   project = Project.new({:title => title, :id => nil})
-  # binding.pry
   project.save
-  redirect to('/')
+  redirect to ('/')
 end
 
 get('/clear') do
