@@ -3,8 +3,9 @@ require('sinatra/reloader')
 require('./lib/project')
 require('./lib/volunteer')
 require('pry')
-also_reload('lib/**/*.rb')
 require("pg")
+require('rspec')
+also_reload('lib/**/*.rb')
 
 DB = PG.connect({:dbname => "volunteer_tracker"})
 
@@ -13,10 +14,10 @@ get('/') do
   erb(:projects)
 end
 
-post('/projects') do
-  title = params[:title]
-  project = Project.new({:title => title, :id => nil})
-  project.save
+post('/') do
+  @title = params[:title]
+  @project = Project.new({:title => @title, :id => nil})
+  @project.save
   redirect to ('/')
 end
 
