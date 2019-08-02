@@ -14,8 +14,10 @@ get('/') do
 end
 
 post('/projects') do
-  project = params[:project_title]
-  Project.save(project)
+  title = params[:title]
+  project = Project.new({:title => title, :id => nil})
+  # binding.pry
+  project.save
   redirect to('/')
 end
 
