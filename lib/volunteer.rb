@@ -1,17 +1,17 @@
 require('./lib/project.rb')
 
 class Volunteer
-  attr_accessor :name, :volunteer
+  attr_accessor :project_id, :name
   attr_reader :id
 
   def initialize(attributes)
     @name = attributes.fetch(:name)
-    @volunteer = attributes.fetch(:volunteer)
-    @id = attributes.fetche(:id)
+    @project_id = attributes.fetch(:project_id)
+    @id = attributes.fetch(:id)
   end
 
   def ==(volunteer_to_compare)
-    (self.name() == volunteer_to_compare()) && (self.volunteer == volunteer_to_compare.project.id())
+    (self.name() == volunteer_to_compare.name()) && (self.project_id == volunteer_to_compare.project_id())
   end
 
   def self.all
@@ -21,7 +21,7 @@ class Volunteer
     name = volunteer.fetch("name")
     project_id = volunteer.fetch("project_id").to_i
     id = volunteer.fetch("id").to_i
-    volunteers.push(volunteer.new({:name => name, :project_id => project_id, :id => id}))
+    volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
   end
   volunteers
   end
@@ -37,7 +37,7 @@ class Volunteer
       name = volunteer.fetch("name")
       project_id = volunteer.fetch("project_id").to_i
       id = volunteer.fetch("id").to_i
-      volunteer.new({:name => name, :project_id => project_id, :id => id})
+      Volunteer.new({:name => name, :project_id => project_id, :id => id})
     else
       nil
     end
@@ -63,13 +63,13 @@ class Volunteer
     returned_volunteers.each() do |volunteer|
       name = volunteer.fetch("name")
       id = volunteer.fetch("id").to_i
-      volunteers.push(volunteer.new({:name => name, :project_id => project_id, :id => id}))
+      volunteers.push(Volunteer.new({:name => name, :project_id => project_id, :id => id}))
     end
     volunteers
   end
 
   def project
-    project.find(@project_id)
+    Project.find(@project_id)
   end
 
 end
