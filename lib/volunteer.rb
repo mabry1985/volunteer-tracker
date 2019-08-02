@@ -1,3 +1,5 @@
+require('./lib/project.rb')
+
 class Volunteer
   attr_accessor :name, :volunteer
   attr_reader :id

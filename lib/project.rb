@@ -1,3 +1,6 @@
+require('./lib/volunteer')
+
+
 class Project
 attr_accessor :title
 attr_reader :id
