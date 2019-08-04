@@ -13,6 +13,7 @@ _A website using CRUD functionality to keep track of volunteers and there projec
 * _Clone or download this repo_
 * _Open console and cd to folder_
 * _install gems_
+* _run "rake build" to build from backup database_
 * _run "ruby app.rb_
 * _follow prompts_
 
