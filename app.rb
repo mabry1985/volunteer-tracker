@@ -33,6 +33,23 @@ post ('/project/:id') do
   redirect to ("/project/#{@volunteer.project_id}")
 end
 
+get ('/project/:id/edit') do
+  @project = Project.find(params[:id].to_i())
+  erb(:project_edit)
+end
+
+patch ('/project/:id/edit') do
+     @project = Project.find(params[:id].to_i())
+     @project.update(:title => params[:title])
+     redirect to ("/project/#{@project.id}")
+end
+
+delete ('/project/:id/edit') do
+     @project = Project.find(params[:id].to_i())
+     @project.delete
+     redirect to ("/")
+end
+
 get ('/volunteers/:id') do
     @volunteer = Volunteer.find(params[:id].to_i())
     erb(:volunteer)
