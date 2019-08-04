@@ -44,6 +44,12 @@ patch ('/volunteers/:id') do
      redirect to ("/project/#{@volunteer.project_id}")
 end
 
+delete ('/volunteers/:id') do
+     @volunteer = Volunteer.find(params[:id].to_i())
+     @volunteer.delete
+     redirect to ("/")
+end
+
 get('/clear') do
   Project.clear()
   Volunteer.clear()
