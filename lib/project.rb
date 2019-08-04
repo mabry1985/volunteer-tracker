@@ -31,7 +31,7 @@ def ==(project_to_compare)
 end
 
 def self.clear
-  DB.exec("DELETE FROM projects *;")
+  DB.exec("TRUNCATE projects RESTART IDENTITY;")
 end
 
 def self.find(id)

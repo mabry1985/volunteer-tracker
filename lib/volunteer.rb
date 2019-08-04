@@ -54,7 +54,7 @@ class Volunteer
   end
 
   def self.clear
-    DB.exec("DELETE FROM volunteers *;")
+  DB.exec("TRUNCATE volunteers RESTART IDENTITY;")
   end
 
   def self.find_by_project(project_id)

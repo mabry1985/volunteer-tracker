@@ -11,16 +11,33 @@ DB = PG.connect({:dbname => "volunteer_tracker"})
 
 get('/') do
   @projects = Project.all
-  erb(:projects)
+  erb(:index)
 end
 
-post('/') do
+post('/project') do
   @title = params[:title]
   @project = Project.new({:title => @title, :id => nil})
   @project.save
   redirect to ('/')
 end
 
+get ('/project/:id') do
+  @project = Project.find(params[:id].to_i())
+  @volunteers = Volunteer.all
+  erb(:project)
+end
+
+post ('/project/:id') do
+  @volunteer = Volunteer.new({:name => params[:name], :id => nil, :project_id => params[:id]})
+  @volunteer.save
+  redirect to ("/project/#{@volunteer.project_id}")
+end
+
+get ('/volunteers/:id') do
+  "Hello World"
+end
+
 get('/clear') do
   Project.clear()
+  Volunteer.clear()
 end
