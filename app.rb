@@ -34,7 +34,14 @@ post ('/project/:id') do
 end
 
 get ('/volunteers/:id') do
-  "Hello World"
+    @volunteer = Volunteer.find(params[:id].to_i())
+    erb(:volunteer)
+end
+
+patch ('/volunteers/:id') do
+     @volunteer = Volunteer.find(params[:id].to_i())
+     @volunteer.update(:name => params[:name])
+     redirect to ("/project/#{@volunteer.project_id}")
 end
 
 get('/clear') do
