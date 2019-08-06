@@ -1,6 +1,12 @@
 <h1>Volunteer Tracker</h1>
 
 <h3>Available Projects</h3>
+<h4>Create a Project</h4>
+<form class="form-group" action="/project" method="post">
+  <label for="title">Title</label>
+  <input class="title" id="title" type="text" name="title">
+  <button type="submit">Create Project</button>
+</form>
 
 <% if @projects.any? %>
   <ul>
@@ -11,9 +17,3 @@
 <% else %>
   <p>There are currently no projects available.</p>
 <% end %>
-
-<h4>Create a Project</h4>
-<form class="form-group" action="/project" method="post">
-  <input type="text" name="title" placeholder="Project Title" required>
-  <button type="submit">Submit</button>
-</form>

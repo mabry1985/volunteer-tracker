@@ -1,5 +1,6 @@
 require('sinatra')
 require('sinatra/reloader')
+require('capybara')
 require('./lib/project')
 require('./lib/volunteer')
 require('pry')
@@ -12,6 +13,10 @@ DB = PG.connect({:dbname => "volunteer_tracker"})
 get('/') do
   @projects = Project.all
   erb(:index)
+end
+
+get ('/test')do
+  erb :index
 end
 
 post('/project') do
